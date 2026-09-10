@@ -607,6 +607,35 @@ function calcular() {
     }
 
 
+    /*
+        LÍMITE MÁXIMO DEL INVENTARIO
+
+        La suma de todos los punzones disponibles
+        es de 320 cm.
+    */
+
+    const capacidadMaxima =
+        punzones.reduce(
+            (total, punzon) =>
+                total + punzon.v,
+            0
+        );
+
+
+    if (objetivo > capacidadMaxima) {
+
+        error.innerHTML =
+            '<div class="error">' +
+            'La medida solicitada supera la longitud máxima disponible de ' +
+            capacidadMaxima.toFixed(1) +
+            ' cm.' +
+            '</div>';
+
+        return;
+
+    }
+
+
     let obligatorio1 =
         document.getElementById("p1").checked;
 
