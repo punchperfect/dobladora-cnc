@@ -1,4 +1,4 @@
-const CACHE_NAME = "dobladora-cnc-v1";
+const CACHE_NAME = "dobladora-cnc-v2";
 
 const FILES_TO_CACHE = [
   "./",
