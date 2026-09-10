@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <link rel="manifest" href="manifest.json">
+
+<link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#111827">
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Dobladora CNC - Punzones</title>
 
 <style>
+
 * {
     box-sizing: border-box;
 }
@@ -214,6 +217,55 @@ button:hover {
     background: #f3f4f6;
 }
 
+/* HISTORIAL */
+
+.historial h2 {
+    margin-top: 0;
+    font-size: 1.2rem;
+}
+
+.historial-item {
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 12px;
+    margin-bottom: 10px;
+    background: #f9fafb;
+}
+
+.historial-medida {
+    font-weight: bold;
+    font-size: 1rem;
+    margin-bottom: 6px;
+}
+
+.historial-orden {
+    color: #374151;
+    font-weight: bold;
+    margin-bottom: 6px;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.historial-datos {
+    color: #6b7280;
+    font-size: 0.85rem;
+}
+
+.historial-vacio {
+    color: #6b7280;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.boton-borrar {
+    background: #dc2626;
+    margin-top: 10px;
+}
+
+.boton-borrar:hover {
+    background: #b91c1c;
+}
+
 .footer {
     text-align: center;
     color: #6b7280;
@@ -222,6 +274,7 @@ button:hover {
 }
 
 @media (max-width: 450px) {
+
     .app {
         padding: 12px;
     }
@@ -233,8 +286,11 @@ button:hover {
     .header h1 {
         font-size: 1.45rem;
     }
+
 }
+
 </style>
+
 </head>
 
 <body>
@@ -242,9 +298,15 @@ button:hover {
 <div class="app">
 
     <div class="header">
+
         <h1>Dobladora CNC</h1>
-        <p>Calculadora de combinaciones de punzones</p>
+
+        <p>
+            Calculadora de combinaciones de punzones
+        </p>
+
     </div>
+
 
     <div class="card">
 
@@ -265,23 +327,39 @@ button:hover {
             Medida expresada en centímetros
         </div>
 
+
         <div class="opciones">
 
             <label class="opcion">
-                <input type="checkbox" id="p1">
+
+                <input
+                    type="checkbox"
+                    id="p1"
+                >
+
                 Punzón 1 obligatorio
+
             </label>
 
+
             <label class="opcion">
-                <input type="checkbox" id="p12">
+
+                <input
+                    type="checkbox"
+                    id="p12"
+                >
+
                 Punzón 12 obligatorio
+
             </label>
 
         </div>
 
+
         <button onclick="calcular()">
             CALCULAR
         </button>
+
 
         <div id="error"></div>
 
@@ -296,31 +374,81 @@ button:hover {
 
         <div class="suma" id="suma"></div>
 
+
         <div class="datos">
 
             <div class="fila">
-                <span>Medida solicitada</span>
+
+                <span>
+                    Medida solicitada
+                </span>
+
                 <span id="solicitada"></span>
+
             </div>
 
+
             <div class="fila">
-                <span>Medida obtenida</span>
+
+                <span>
+                    Medida obtenida
+                </span>
+
                 <span id="obtenida"></span>
+
             </div>
 
+
             <div class="fila">
-                <span>Sobrante</span>
+
+                <span>
+                    Sobrante
+                </span>
+
                 <span id="sobrante"></span>
+
             </div>
 
+
             <div class="fila">
-                <span>Cantidad de punzones</span>
+
+                <span>
+                    Cantidad de punzones
+                </span>
+
                 <span id="cantidad"></span>
+
             </div>
 
         </div>
 
+
         <div id="especial"></div>
+
+    </div>
+
+
+    <!-- HISTORIAL -->
+
+    <div class="card historial">
+
+        <h2>Historial</h2>
+
+        <div id="listaHistorial">
+
+            <p class="historial-vacio">
+                No hay cálculos guardados.
+            </p>
+
+        </div>
+
+
+        <button
+            class="boton-borrar"
+            onclick="borrarHistorial()"
+        >
+            BORRAR HISTORIAL
+        </button>
 
     </div>
 
@@ -329,36 +457,94 @@ button:hover {
 
         <h2>Inventario</h2>
 
+
         <table class="tabla">
 
             <thead>
+
                 <tr>
+
                     <th>Punzón</th>
                     <th>Medida</th>
+
                 </tr>
+
             </thead>
 
+
             <tbody>
-                <tr><td>1</td><td>10 cm</td></tr>
-                <tr><td>2</td><td>1 cm</td></tr>
-                <tr><td>3</td><td>1.5 cm</td></tr>
-                <tr><td>4</td><td>2 cm</td></tr>
-                <tr><td>5</td><td>4 cm</td></tr>
-                <tr><td>6</td><td>5 cm</td></tr>
-                <tr><td>7</td><td>16.5 cm</td></tr>
-                <tr><td>8</td><td>30 cm</td></tr>
-                <tr><td>9</td><td>80 cm</td></tr>
-                <tr><td>10</td><td>80 cm</td></tr>
-                <tr><td>11</td><td>80 cm</td></tr>
-                <tr><td>12</td><td>10 cm</td></tr>
+
+                <tr>
+                    <td>1</td>
+                    <td>10 cm</td>
+                </tr>
+
+                <tr>
+                    <td>2</td>
+                    <td>1 cm</td>
+                </tr>
+
+                <tr>
+                    <td>3</td>
+                    <td>1.5 cm</td>
+                </tr>
+
+                <tr>
+                    <td>4</td>
+                    <td>2 cm</td>
+                </tr>
+
+                <tr>
+                    <td>5</td>
+                    <td>4 cm</td>
+                </tr>
+
+                <tr>
+                    <td>6</td>
+                    <td>5 cm</td>
+                </tr>
+
+                <tr>
+                    <td>7</td>
+                    <td>16.5 cm</td>
+                </tr>
+
+                <tr>
+                    <td>8</td>
+                    <td>30 cm</td>
+                </tr>
+
+                <tr>
+                    <td>9</td>
+                    <td>80 cm</td>
+                </tr>
+
+                <tr>
+                    <td>10</td>
+                    <td>80 cm</td>
+                </tr>
+
+                <tr>
+                    <td>11</td>
+                    <td>80 cm</td>
+                </tr>
+
+                <tr>
+                    <td>12</td>
+                    <td>10 cm</td>
+                </tr>
+
             </tbody>
 
         </table>
 
     </div>
 
+
     <div class="footer">
+
         Dobladora CNC — Calculadora de punzones
+
     </div>
 
 </div>
@@ -367,6 +553,7 @@ button:hover {
 <script>
 
 const punzones = [
+
     { id: 1,  v: 10 },
     { id: 2,  v: 1 },
     { id: 3,  v: 1.5 },
@@ -379,31 +566,44 @@ const punzones = [
     { id: 10, v: 80 },
     { id: 11, v: 80 },
     { id: 12, v: 10 }
+
 ];
 
 
 function calcular() {
 
-    const resultado = document.getElementById("resultado");
-    const error = document.getElementById("error");
-    const especial = document.getElementById("especial");
+    const resultado =
+        document.getElementById("resultado");
+
+    const error =
+        document.getElementById("error");
+
+    const especial =
+        document.getElementById("especial");
+
 
     error.innerHTML = "";
+
     especial.innerHTML = "";
+
     resultado.classList.remove("visible");
 
 
-    const objetivo = parseFloat(
-        document.getElementById("medida").value
-    );
+    const objetivo =
+        parseFloat(
+            document.getElementById("medida").value
+        );
 
 
     if (isNaN(objetivo) || objetivo <= 0) {
 
         error.innerHTML =
-            '<div class="error">Ingrese una medida válida.</div>';
+            '<div class="error">' +
+            'Ingrese una medida válida.' +
+            '</div>';
 
         return;
+
     }
 
 
@@ -418,12 +618,16 @@ function calcular() {
         REGLA ESPECIAL DE 67 CM
     */
 
-    const es67 = Math.abs(objetivo - 67) < 0.001;
+    const es67 =
+        Math.abs(objetivo - 67) < 0.001;
+
 
     if (es67) {
 
         obligatorio1 = true;
+
         obligatorio12 = true;
+
 
         especial.innerHTML =
             "Para 67 cm se colocan P1 y P12 en los extremos.";
@@ -433,17 +637,25 @@ function calcular() {
 
     const forzados = [];
 
+
     if (obligatorio1) {
+
         forzados.push(1);
+
     }
 
+
     if (obligatorio12) {
+
         forzados.push(12);
+
     }
 
 
     let mejorSuma = -1;
+
     let mejorCombo = [];
+
     let mejorCantidad = Infinity;
 
 
@@ -453,22 +665,34 @@ function calcular() {
     /*
         PROBAR TODAS LAS COMBINACIONES
 
-        Hay 12 punzones.
-        2^12 = 4096 combinaciones.
+        12 punzones = 4096 combinaciones
     */
 
-    for (let mask = 0; mask < (1 << n); mask++) {
+
+    for (
+        let mask = 0;
+        mask < (1 << n);
+        mask++
+    ) {
 
         let suma = 0;
+
         let combo = [];
 
 
-        for (let i = 0; i < n; i++) {
+        for (
+            let i = 0;
+            i < n;
+            i++
+        ) {
 
             if (mask & (1 << i)) {
 
                 suma += punzones[i].v;
-                combo.push(punzones[i].id);
+
+                combo.push(
+                    punzones[i].id
+                );
 
             }
 
@@ -476,7 +700,9 @@ function calcular() {
 
 
         if (suma > objetivo) {
+
             continue;
+
         }
 
 
@@ -487,23 +713,36 @@ function calcular() {
 
 
         if (!cumpleForzados) {
+
             continue;
+
         }
 
 
-        const cantidad = combo.length;
+        const cantidad =
+            combo.length;
 
 
         if (
+
             suma > mejorSuma ||
+
             (
-                Math.abs(suma - mejorSuma) < 0.001 &&
+
+                Math.abs(
+                    suma - mejorSuma
+                ) < 0.001 &&
+
                 cantidad < mejorCantidad
+
             )
+
         ) {
 
             mejorSuma = suma;
+
             mejorCombo = combo;
+
             mejorCantidad = cantidad;
 
         }
@@ -515,36 +754,44 @@ function calcular() {
 
         error.innerHTML =
             '<div class="error">' +
-            'No existe una combinación válida con las condiciones seleccionadas.' +
+            'No existe una combinación válida ' +
+            'con las condiciones seleccionadas.' +
             '</div>';
 
         return;
+
     }
 
 
     /*
         ORDEN FÍSICO
 
-        Si P1 es obligatorio:
-        P1 queda a la izquierda.
-
-        Si P12 es obligatorio:
-        P12 queda a la derecha.
-
-        Los demás quedan en medio.
+        P1 a la izquierda.
+        P12 a la derecha.
     */
 
-    let orden = [...mejorCombo];
+
+    let orden =
+        [...mejorCombo];
 
 
-    if (obligatorio1 && obligatorio12) {
+    if (
+        obligatorio1 &&
+        obligatorio12
+    ) {
 
         orden = [
+
             1,
+
             ...orden.filter(
-                id => id !== 1 && id !== 12
+                id =>
+                    id !== 1 &&
+                    id !== 12
             ),
+
             12
+
         ];
 
     }
@@ -552,8 +799,13 @@ function calcular() {
     else if (obligatorio1) {
 
         orden = [
+
             1,
-            ...orden.filter(id => id !== 1)
+
+            ...orden.filter(
+                id => id !== 1
+            )
+
         ];
 
     }
@@ -561,8 +813,13 @@ function calcular() {
     else if (obligatorio12) {
 
         orden = [
-            ...orden.filter(id => id !== 12),
+
+            ...orden.filter(
+                id => id !== 12
+            ),
+
             12
+
         ];
 
     }
@@ -573,21 +830,35 @@ function calcular() {
     */
 
     document.getElementById("orden").textContent =
-        orden.map(id => "P" + id).join("  →  ");
+
+        orden
+            .map(id => "P" + id)
+            .join("  →  ");
 
 
     /*
         MOSTRAR SUMA
     */
 
-    const valores = orden.map(
-        id => punzones.find(p => p.id === id).v
-    );
+    const valores =
+        orden.map(
+            id =>
+                punzones.find(
+                    p => p.id === id
+                ).v
+        );
+
 
     document.getElementById("suma").textContent =
-        valores.map(v => v + " cm").join(" + ") +
+
+        valores
+            .map(v => v + " cm")
+            .join(" + ") +
+
         " = " +
+
         mejorSuma.toFixed(1) +
+
         " cm";
 
 
@@ -599,47 +870,267 @@ function calcular() {
         objetivo - mejorSuma;
 
 
-    document.getElementById("solicitada").textContent =
-        objetivo.toFixed(1) + " cm";
+    document.getElementById(
+        "solicitada"
+    ).textContent =
+
+        objetivo.toFixed(1) +
+        " cm";
 
 
-    document.getElementById("obtenida").textContent =
-        mejorSuma.toFixed(1) + " cm";
+    document.getElementById(
+        "obtenida"
+    ).textContent =
+
+        mejorSuma.toFixed(1) +
+        " cm";
 
 
-    document.getElementById("sobrante").textContent =
-        sobrante.toFixed(1) + " cm";
+    document.getElementById(
+        "sobrante"
+    ).textContent =
+
+        sobrante.toFixed(1) +
+        " cm";
 
 
-    document.getElementById("cantidad").textContent =
+    document.getElementById(
+        "cantidad"
+    ).textContent =
+
         mejorCombo.length;
 
 
     resultado.classList.add("visible");
 
+
+    /*
+        GUARDAR EN HISTORIAL
+    */
+
+    guardarHistorial(
+        objetivo,
+        orden,
+        mejorSuma,
+        sobrante
+    );
+
 }
 
 
-document.getElementById("medida").addEventListener(
+/*
+    GUARDAR HISTORIAL
+*/
+
+function guardarHistorial(
+    objetivo,
+    orden,
+    obtenida,
+    sobrante
+) {
+
+    const historial =
+
+        JSON.parse(
+            localStorage.getItem(
+                "historialDobladora"
+            )
+        ) || [];
+
+
+    historial.unshift({
+
+        medida: objetivo,
+
+        orden: orden,
+
+        obtenida: obtenida,
+
+        sobrante: sobrante
+
+    });
+
+
+    localStorage.setItem(
+
+        "historialDobladora",
+
+        JSON.stringify(historial)
+
+    );
+
+
+    mostrarHistorial();
+
+}
+
+
+/*
+    MOSTRAR HISTORIAL
+*/
+
+function mostrarHistorial() {
+
+    const historial =
+
+        JSON.parse(
+            localStorage.getItem(
+                "historialDobladora"
+            )
+        ) || [];
+
+
+    const lista =
+        document.getElementById(
+            "listaHistorial"
+        );
+
+
+    if (historial.length === 0) {
+
+        lista.innerHTML =
+
+            '<p class="historial-vacio">' +
+            'No hay cálculos guardados.' +
+            '</p>';
+
+        return;
+
+    }
+
+
+    lista.innerHTML =
+
+        historial.map(item => {
+
+            return `
+
+                <div class="historial-item">
+
+                    <div class="historial-medida">
+
+                        ${item.medida.toFixed(1)}
+                        cm
+
+                    </div>
+
+
+                    <div class="historial-orden">
+
+                        ${item.orden
+                            .map(
+                                id => "P" + id
+                            )
+                            .join(" → ")
+                        }
+
+                    </div>
+
+
+                    <div class="historial-datos">
+
+                        Obtenida:
+                        ${item.obtenida.toFixed(1)}
+                        cm
+
+                        ·
+
+                        Sobrante:
+                        ${item.sobrante.toFixed(1)}
+                        cm
+
+                    </div>
+
+                </div>
+
+            `;
+
+        }).join("");
+
+}
+
+
+/*
+    BORRAR HISTORIAL
+*/
+
+function borrarHistorial() {
+
+    localStorage.removeItem(
+        "historialDobladora"
+    );
+
+
+    mostrarHistorial();
+
+}
+
+
+/*
+    CARGAR HISTORIAL AL ABRIR
+*/
+
+mostrarHistorial();
+
+
+/*
+    ENTER PARA CALCULAR
+*/
+
+document.getElementById(
+    "medida"
+).addEventListener(
+
     "keydown",
+
     function(event) {
 
         if (event.key === "Enter") {
+
             calcular();
+
         }
 
     }
+
 );
 
 </script>
+
+
 <script>
+
 if ("serviceWorker" in navigator) {
-    window.addEventListener("load", () => {
-        navigator.serviceWorker.register("./service-worker.js")
-            .then(() => console.log("Service Worker registrado"))
-            .catch(error => console.error("Error:", error));
-    });
+
+    window.addEventListener(
+        "load",
+        () => {
+
+            navigator.serviceWorker.register(
+                "./service-worker.js"
+            )
+
+            .then(
+                () =>
+                    console.log(
+                        "Service Worker registrado"
+                    )
+            )
+
+            .catch(
+                error =>
+                    console.error(
+                        "Error:",
+                        error
+                    )
+            );
+
+        }
+    );
+
 }
+
 </script>
+
 </body>
 </html>
