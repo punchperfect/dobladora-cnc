@@ -7,231 +7,231 @@
 <title>Dobladora CNC - Punzones</title>
 
 <style>
-    * {
-        box-sizing: border-box;
-    }
+* {
+    box-sizing: border-box;
+}
 
-    body {
-        margin: 0;
-        font-family: Arial, Helvetica, sans-serif;
-        background: #eef1f5;
-        color: #171717;
-    }
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #eef1f5;
+    color: #171717;
+}
 
+.app {
+    max-width: 600px;
+    margin: auto;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.header {
+    background: #111827;
+    color: white;
+    padding: 22px;
+    border-radius: 16px;
+    margin-bottom: 18px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.12);
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 1.7rem;
+}
+
+.header p {
+    margin: 7px 0 0;
+    color: #cbd5e1;
+    font-size: 0.95rem;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 16px;
+    margin-bottom: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+label.titulo {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+    font-size: 1rem;
+}
+
+#medida {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.4rem;
+    border: 2px solid #d1d5db;
+    border-radius: 10px;
+    outline: none;
+}
+
+#medida:focus {
+    border-color: #2563eb;
+}
+
+.unidad {
+    color: #6b7280;
+    font-size: 0.9rem;
+    margin-top: 6px;
+}
+
+.opciones {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.opcion {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 13px;
+    background: #f3f4f6;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 0.95rem;
+}
+
+.opcion input {
+    width: 19px;
+    height: 19px;
+    accent-color: #2563eb;
+}
+
+button {
+    width: 100%;
+    border: none;
+    padding: 16px;
+    border-radius: 10px;
+    background: #2563eb;
+    color: white;
+    font-size: 1.15rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 16px;
+}
+
+button:hover {
+    background: #1d4ed8;
+}
+
+.resultado {
+    display: none;
+}
+
+.resultado.visible {
+    display: block;
+}
+
+.resultado h2 {
+    margin-top: 0;
+    font-size: 1.25rem;
+}
+
+.orden {
+    margin: 15px 0;
+    padding: 15px;
+    background: #111827;
+    color: white;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 1.15rem;
+    font-weight: bold;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.suma {
+    text-align: center;
+    font-size: 1rem;
+    margin-bottom: 15px;
+    color: #374151;
+}
+
+.datos {
+    border-top: 1px solid #e5e7eb;
+    padding-top: 14px;
+}
+
+.fila {
+    display: flex;
+    justify-content: space-between;
+    padding: 7px 0;
+}
+
+.fila span:first-child {
+    color: #6b7280;
+}
+
+.fila span:last-child {
+    font-weight: bold;
+}
+
+.especial {
+    margin-top: 15px;
+    padding: 12px;
+    background: #eff6ff;
+    border-left: 4px solid #2563eb;
+    border-radius: 6px;
+    color: #1e3a8a;
+    font-size: 0.95rem;
+}
+
+.error {
+    background: #fef2f2;
+    border-left: 4px solid #dc2626;
+    color: #991b1b;
+    padding: 13px;
+    border-radius: 6px;
+    margin-top: 15px;
+}
+
+.inventario h2 {
+    margin-top: 0;
+    font-size: 1.2rem;
+}
+
+.tabla {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tabla th,
+.tabla td {
+    padding: 9px;
+    text-align: center;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.tabla th {
+    background: #f3f4f6;
+}
+
+.footer {
+    text-align: center;
+    color: #6b7280;
+    font-size: 0.8rem;
+    padding: 10px;
+}
+
+@media (max-width: 450px) {
     .app {
-        max-width: 600px;
-        margin: auto;
-        min-height: 100vh;
-        padding: 20px;
-    }
-
-    .header {
-        background: #111827;
-        color: white;
-        padding: 22px;
-        border-radius: 16px;
-        margin-bottom: 18px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.12);
-    }
-
-    .header h1 {
-        margin: 0;
-        font-size: 1.7rem;
-    }
-
-    .header p {
-        margin: 7px 0 0;
-        color: #cbd5e1;
-        font-size: 0.95rem;
-    }
-
-    .card {
-        background: white;
-        padding: 20px;
-        border-radius: 16px;
-        margin-bottom: 16px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    }
-
-    label.titulo {
-        display: block;
-        font-weight: bold;
-        margin-bottom: 8px;
-        font-size: 1rem;
-    }
-
-    #medida {
-        width: 100%;
-        padding: 15px;
-        font-size: 1.4rem;
-        border: 2px solid #d1d5db;
-        border-radius: 10px;
-        outline: none;
-    }
-
-    #medida:focus {
-        border-color: #2563eb;
-    }
-
-    .unidad {
-        color: #6b7280;
-        font-size: 0.9rem;
-        margin-top: 6px;
+        padding: 12px;
     }
 
     .opciones {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 10px;
-        margin-top: 15px;
+        grid-template-columns: 1fr;
     }
 
-    .opcion {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        padding: 13px;
-        background: #f3f4f6;
-        border-radius: 10px;
-        cursor: pointer;
-        font-size: 0.95rem;
+    .header h1 {
+        font-size: 1.45rem;
     }
-
-    .opcion input {
-        width: 19px;
-        height: 19px;
-        accent-color: #2563eb;
-    }
-
-    button {
-        width: 100%;
-        border: none;
-        padding: 16px;
-        border-radius: 10px;
-        background: #2563eb;
-        color: white;
-        font-size: 1.15rem;
-        font-weight: bold;
-        cursor: pointer;
-        margin-top: 16px;
-    }
-
-    button:hover {
-        background: #1d4ed8;
-    }
-
-    button:active {
-        transform: scale(0.99);
-    }
-
-    .resultado {
-        display: none;
-    }
-
-    .resultado.visible {
-        display: block;
-    }
-
-    .resultado h2 {
-        margin-top: 0;
-        font-size: 1.25rem;
-    }
-
-    .punzones {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-        margin: 15px 0;
-    }
-
-    .punzon {
-        background: #111827;
-        color: white;
-        padding: 10px 13px;
-        border-radius: 8px;
-        font-weight: bold;
-        font-size: 1rem;
-    }
-
-    .datos {
-        border-top: 1px solid #e5e7eb;
-        padding-top: 14px;
-    }
-
-    .fila {
-        display: flex;
-        justify-content: space-between;
-        padding: 7px 0;
-    }
-
-    .fila span:first-child {
-        color: #6b7280;
-    }
-
-    .fila span:last-child {
-        font-weight: bold;
-    }
-
-    .especial {
-        margin-top: 15px;
-        padding: 12px;
-        background: #eff6ff;
-        border-left: 4px solid #2563eb;
-        border-radius: 6px;
-        color: #1e3a8a;
-        font-size: 0.95rem;
-    }
-
-    .error {
-        background: #fef2f2;
-        border-left: 4px solid #dc2626;
-        color: #991b1b;
-        padding: 13px;
-        border-radius: 6px;
-        margin-top: 15px;
-    }
-
-    .inventario h2 {
-        margin-top: 0;
-        font-size: 1.2rem;
-    }
-
-    .tabla {
-        width: 100%;
-        border-collapse: collapse;
-    }
-
-    .tabla th,
-    .tabla td {
-        padding: 9px;
-        text-align: center;
-        border-bottom: 1px solid #e5e7eb;
-    }
-
-    .tabla th {
-        background: #f3f4f6;
-    }
-
-    .footer {
-        text-align: center;
-        color: #6b7280;
-        font-size: 0.8rem;
-        padding: 10px;
-    }
-
-    @media (max-width: 450px) {
-        .app {
-            padding: 12px;
-        }
-
-        .opciones {
-            grid-template-columns: 1fr;
-        }
-
-        .header h1 {
-            font-size: 1.45rem;
-        }
-    }
+}
 </style>
 </head>
 
@@ -285,11 +285,14 @@
 
     </div>
 
+
     <div class="card resultado" id="resultado">
 
         <h2>Resultado</h2>
 
-        <div id="punzones" class="punzones"></div>
+        <div class="orden" id="orden"></div>
+
+        <div class="suma" id="suma"></div>
 
         <div class="datos">
 
@@ -318,6 +321,7 @@
         <div id="especial"></div>
 
     </div>
+
 
     <div class="card inventario">
 
@@ -357,6 +361,7 @@
 
 </div>
 
+
 <script>
 
 const punzones = [
@@ -385,9 +390,11 @@ function calcular() {
     especial.innerHTML = "";
     resultado.classList.remove("visible");
 
+
     const objetivo = parseFloat(
         document.getElementById("medida").value
     );
+
 
     if (isNaN(objetivo) || objetivo <= 0) {
 
@@ -398,12 +405,6 @@ function calcular() {
     }
 
 
-    /*
-        REGLA ESPECIAL:
-        Para 67 cm deben estar los punzones
-        1 y 12, uno en cada extremo.
-    */
-
     let obligatorio1 =
         document.getElementById("p1").checked;
 
@@ -411,13 +412,20 @@ function calcular() {
         document.getElementById("p12").checked;
 
 
-    if (Math.abs(objetivo - 67) < 0.001) {
+    /*
+        REGLA ESPECIAL DE 67 CM
+    */
+
+    const es67 = Math.abs(objetivo - 67) < 0.001;
+
+    if (es67) {
+
         obligatorio1 = true;
         obligatorio12 = true;
 
         especial.innerHTML =
-            "Regla especial de 67 cm aplicada: " +
-            "punzón 1 en un extremo y punzón 12 en el otro.";
+            "Para 67 cm se colocan P1 y P12 en los extremos.";
+
     }
 
 
@@ -439,18 +447,19 @@ function calcular() {
 
     const n = punzones.length;
 
-    /*
-        Cada bit representa si un punzón se utiliza.
 
+    /*
+        PROBAR TODAS LAS COMBINACIONES
+
+        Hay 12 punzones.
         2^12 = 4096 combinaciones.
-        Es suficientemente pequeño para que
-        el cálculo sea instantáneo.
     */
 
     for (let mask = 0; mask < (1 << n); mask++) {
 
         let suma = 0;
         let combo = [];
+
 
         for (let i = 0; i < n; i++) {
 
@@ -460,27 +469,20 @@ function calcular() {
                 combo.push(punzones[i].id);
 
             }
+
         }
 
-
-        /*
-            No permitir que la combinación
-            sobrepase la medida solicitada.
-        */
 
         if (suma > objetivo) {
             continue;
         }
 
 
-        /*
-            Verificar punzones obligatorios.
-        */
-
         const cumpleForzados =
             forzados.every(
                 id => combo.includes(id)
             );
+
 
         if (!cumpleForzados) {
             continue;
@@ -489,14 +491,6 @@ function calcular() {
 
         const cantidad = combo.length;
 
-
-        /*
-            Primero buscamos la mayor medida posible.
-
-            Si dos combinaciones tienen exactamente
-            la misma medida, preferimos la que use
-            menos punzones.
-        */
 
         if (
             suma > mejorSuma ||
@@ -527,48 +521,77 @@ function calcular() {
 
 
     /*
-        Para 67 cm mostramos explícitamente
-        los extremos.
+        ORDEN FÍSICO
+
+        Si P1 es obligatorio:
+        P1 queda a la izquierda.
+
+        Si P12 es obligatorio:
+        P12 queda a la derecha.
+
+        Los demás quedan en medio.
     */
 
-    let comboMostrar = [...mejorCombo];
+    let orden = [...mejorCombo];
 
-    if (
-        Math.abs(objetivo - 67) < 0.001 &&
-        comboMostrar.includes(1) &&
-        comboMostrar.includes(12)
-    ) {
 
-        comboMostrar =
-            [
-                1,
-                ...comboMostrar.filter(
-                    id => id !== 1 && id !== 12
-                ),
-                12
-            ];
+    if (obligatorio1 && obligatorio12) {
+
+        orden = [
+            1,
+            ...orden.filter(
+                id => id !== 1 && id !== 12
+            ),
+            12
+        ];
+
+    }
+
+    else if (obligatorio1) {
+
+        orden = [
+            1,
+            ...orden.filter(id => id !== 1)
+        ];
+
+    }
+
+    else if (obligatorio12) {
+
+        orden = [
+            ...orden.filter(id => id !== 12),
+            12
+        ];
+
     }
 
 
-    const contenedorPunzones =
-        document.getElementById("punzones");
+    /*
+        MOSTRAR ORDEN
+    */
 
-    contenedorPunzones.innerHTML = "";
+    document.getElementById("orden").textContent =
+        orden.map(id => "P" + id).join("  →  ");
 
 
-    comboMostrar.forEach(id => {
+    /*
+        MOSTRAR SUMA
+    */
 
-        const elemento =
-            document.createElement("div");
+    const valores = orden.map(
+        id => punzones.find(p => p.id === id).v
+    );
 
-        elemento.className = "punzon";
-        elemento.textContent =
-            "P" + id;
+    document.getElementById("suma").textContent =
+        valores.map(v => v + " cm").join(" + ") +
+        " = " +
+        mejorSuma.toFixed(1) +
+        " cm";
 
-        contenedorPunzones.appendChild(elemento);
 
-    });
-
+    /*
+        DATOS
+    */
 
     const sobrante =
         objetivo - mejorSuma;
@@ -577,11 +600,14 @@ function calcular() {
     document.getElementById("solicitada").textContent =
         objetivo.toFixed(1) + " cm";
 
+
     document.getElementById("obtenida").textContent =
         mejorSuma.toFixed(1) + " cm";
 
+
     document.getElementById("sobrante").textContent =
         sobrante.toFixed(1) + " cm";
+
 
     document.getElementById("cantidad").textContent =
         mejorCombo.length;
@@ -607,4 +633,3 @@ document.getElementById("medida").addEventListener(
 
 </body>
 </html>
-
